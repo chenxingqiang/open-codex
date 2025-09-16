@@ -116,6 +116,7 @@ impl ModelClient {
     pub async fn stream(&self, prompt: &Prompt) -> Result<ResponseStream> {
         match self.provider.wire_api {
             WireApi::Responses => self.stream_responses(prompt).await,
+            WireApi::LmiBridge => self.stream_lmi_bridge(prompt).await,
             WireApi::Chat => {
                 // Create the raw streaming connection first.
                 let response_stream = stream_chat_completions(
@@ -360,6 +361,19 @@ impl ModelClient {
                 }
             }
         }
+    }
+
+    /// Implementation for the Large Models Interface bridge.
+    async fn stream_lmi_bridge(&self, prompt: &Prompt) -> Result<ResponseStream> {
+        use crate::lmi_bridge_client::LmiBridgeClient;
+        
+        let mut bridge_client = LmiBridgeClient::new(
+            self.config.clone(),
+            self.provider.clone(),
+            self.conversation_id,
+        );
+        
+        bridge_client.stream(prompt).await
     }
 
     pub fn get_provider(&self) -> ModelProviderInfo {

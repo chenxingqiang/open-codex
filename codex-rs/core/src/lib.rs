@@ -31,6 +31,7 @@ pub mod git_info;
 pub mod internal_storage;
 mod is_safe_command;
 pub mod landlock;
+mod lmi_bridge_client;
 mod mcp_connection_manager;
 mod mcp_tool_call;
 mod message_history;

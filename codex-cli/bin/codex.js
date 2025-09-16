@@ -100,10 +100,46 @@ if (rgDir) {
 }
 const updatedPath = getUpdatedPath(additionalDirs);
 
-const child = spawn(binaryPath, process.argv.slice(2), {
-  stdio: "inherit",
-  env: { ...process.env, PATH: updatedPath, CODEX_MANAGED_BY_NPM: "1" },
-});
+// Check if we need to use LMI bridge for model providers
+const args = process.argv.slice(2);
+const needsLMIBridge = args.some(arg => 
+  arg.startsWith('--model-provider=lmi_') || 
+  (arg === '--model-provider' && args[args.indexOf(arg) + 1]?.startsWith('lmi_'))
+);
+
+let child;
+if (needsLMIBridge) {
+  // Start the LMI bridge service alongside the Rust binary
+  const { spawn: spawnBridge } = await import("child_process");
+  const bridgePath = path.join(__dirname, "..", "src", "model-bridge.js");
+  
+  const bridge = spawnBridge("node", [bridgePath], {
+    stdio: ["pipe", "pipe", "inherit"],
+    env: { ...process.env, PATH: updatedPath }
+  });
+  
+  // Start the main Rust binary with bridge communication
+  child = spawn(binaryPath, process.argv.slice(2), {
+    stdio: "inherit",
+    env: { 
+      ...process.env, 
+      PATH: updatedPath, 
+      CODEX_MANAGED_BY_NPM: "1",
+      CODEX_LMI_BRIDGE_PID: bridge.pid.toString()
+    },
+  });
+  
+  // Handle bridge cleanup when main process exits
+  child.on('exit', () => {
+    bridge.kill();
+  });
+} else {
+  // Normal execution without LMI bridge
+  child = spawn(binaryPath, process.argv.slice(2), {
+    stdio: "inherit",
+    env: { ...process.env, PATH: updatedPath, CODEX_MANAGED_BY_NPM: "1" },
+  });
+}
 
 child.on("error", (err) => {
   // Typically triggered when the binary is missing or not executable.

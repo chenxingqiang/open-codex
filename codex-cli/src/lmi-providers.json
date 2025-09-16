@@ -1,0 +1,249 @@
+{
+  "providers": {
+    "openai": {
+      "name": "OpenAI",
+      "base_url": "https://api.openai.com/v1",
+      "env_key": "OPENAI_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "base_url": "https://api.anthropic.com",
+      "env_key": "ANTHROPIC_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "google": {
+      "name": "Google Gemini",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta",
+      "env_key": "GOOGLE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "mistral": {
+      "name": "Mistral AI",
+      "base_url": "https://api.mistral.ai/v1",
+      "env_key": "MISTRAL_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "cohere": {
+      "name": "Cohere",
+      "base_url": "https://api.cohere.ai/v1",
+      "env_key": "COHERE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "huggingface": {
+      "name": "Hugging Face",
+      "base_url": "https://api-inference.huggingface.co",
+      "env_key": "HUGGINGFACE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "nvidia": {
+      "name": "NVIDIA AI",
+      "base_url": "https://api.nvcf.nvidia.com/v1",
+      "env_key": "NVIDIA_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "xai": {
+      "name": "xAI (Grok)",
+      "base_url": "https://api.x.ai/v1",
+      "env_key": "XAI_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "baidu": {
+      "name": "百度文心一言",
+      "base_url": "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop",
+      "env_key": "BAIDU_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "alibaba": {
+      "name": "阿里云通义千问",
+      "base_url": "https://dashscope.aliyuncs.com/api/v1",
+      "env_key": "ALIBABA_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "tencent": {
+      "name": "腾讯混元",
+      "base_url": "https://hunyuan.tencentcloudapi.com",
+      "env_key": "TENCENT_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "bytedance": {
+      "name": "字节跳动豆包",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "env_key": "BYTEDANCE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "iflytek": {
+      "name": "科大讯飞星火",
+      "base_url": "https://spark-api.xf-yun.com/v1",
+      "env_key": "IFLYTEK_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "zhipu": {
+      "name": "智谱AI",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "env_key": "ZHIPU_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "moonshot": {
+      "name": "月之暗面Kimi",
+      "base_url": "https://api.moonshot.cn/v1",
+      "env_key": "MOONSHOT_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "base_url": "https://api.deepseek.com/v1",
+      "env_key": "DEEPSEEK_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "qwen": {
+      "name": "通义千问",
+      "base_url": "https://dashscope.aliyuncs.com/api/v1",
+      "env_key": "QWEN_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "yi": {
+      "name": "零一万物Yi",
+      "base_url": "https://api.lingyiwanwu.com/v1",
+      "env_key": "YI_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "glm": {
+      "name": "智谱清言",
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "env_key": "GLM_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "claude": {
+      "name": "Claude (Anthropic)",
+      "base_url": "https://api.anthropic.com",
+      "env_key": "ANTHROPIC_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "gemini": {
+      "name": "Google Gemini",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta",
+      "env_key": "GOOGLE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "gpt4": {
+      "name": "GPT-4 (OpenAI)",
+      "base_url": "https://api.openai.com/v1",
+      "env_key": "OPENAI_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "gpt3": {
+      "name": "GPT-3.5 (OpenAI)",
+      "base_url": "https://api.openai.com/v1",
+      "env_key": "OPENAI_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "llama": {
+      "name": "Meta Llama",
+      "base_url": "https://api.llama-api.com",
+      "env_key": "LLAMA_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "palm": {
+      "name": "Google PaLM",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta2",
+      "env_key": "GOOGLE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "replicate": {
+      "name": "Replicate",
+      "base_url": "https://api.replicate.com/v1",
+      "env_key": "REPLICATE_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "together": {
+      "name": "Together AI",
+      "base_url": "https://api.together.xyz/v1",
+      "env_key": "TOGETHER_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "perplexity": {
+      "name": "Perplexity AI",
+      "base_url": "https://api.perplexity.ai",
+      "env_key": "PERPLEXITY_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "groq": {
+      "name": "Groq",
+      "base_url": "https://api.groq.com/openai/v1",
+      "env_key": "GROQ_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "fireworks": {
+      "name": "Fireworks AI",
+      "base_url": "https://api.fireworks.ai/inference/v1",
+      "env_key": "FIREWORKS_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "vllm": {
+      "name": "vLLM",
+      "base_url": "http://localhost:8000/v1",
+      "env_key": null,
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "ollama": {
+      "name": "Ollama",
+      "base_url": "http://localhost:11434/v1",
+      "env_key": null,
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "lmstudio": {
+      "name": "LM Studio",
+      "base_url": "http://localhost:1234/v1",
+      "env_key": null,
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    },
+    "textgeneration": {
+      "name": "Text Generation WebUI",
+      "base_url": "http://localhost:5000/v1",
+      "env_key": null,
+      "wire_api": "chat",
+      "requires_openai_auth": false
+    }
+  }
+}

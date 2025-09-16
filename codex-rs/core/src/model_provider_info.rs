@@ -37,6 +37,10 @@ pub enum WireApi {
     /// Regular Chat Completions compatible with `/v1/chat/completions`.
     #[default]
     Chat,
+
+    /// Large Models Interface bridge - communicates with Node.js bridge service
+    /// to support 51+ model providers through the large-models-interface package.
+    LmiBridge,
 }
 
 /// Serializable representation of a provider definition.
@@ -159,6 +163,11 @@ impl ModelProviderInfo {
         match self.wire_api {
             WireApi::Responses => format!("{base_url}/responses{query_string}"),
             WireApi::Chat => format!("{base_url}/chat/completions{query_string}"),
+            WireApi::LmiBridge => {
+                // For LMI bridge, we use a special URL that indicates this should
+                // be handled by the Node.js bridge service
+                format!("lmi-bridge://{base_url}{query_string}")
+            }
         }
     }
 
