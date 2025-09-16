@@ -1,0 +1,32 @@
+{
+  "name": "@iechor/open-icodex",
+  "version": "0.0.0-dev",
+  "license": "Apache-2.0",
+  "bin": {
+    "icodex": "bin/icodex.js"
+  },
+  "scripts": {
+    "setup-lmi": "node scripts/setup-lmi-providers.js",
+    "lmi-list": "node src/lmi-cli.js list",
+    "lmi-config": "node src/lmi-cli.js generate-config"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openai/icodex.git"
+  },
+  "dependencies": {
+    "@vscode/ripgrep": "^1.15.14",
+    "large-models-interface": "^1.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

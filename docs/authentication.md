@@ -5,7 +5,7 @@
 If you prefer to pay-as-you-go, you can still authenticate with your OpenAI API key:
 
 ```shell
-codex login --api-key "your-api-key-here"
+icodex login --api-key "your-api-key-here"
 ```
 
 This key must, at minimum, have write access to the Responses API.
@@ -14,9 +14,9 @@ This key must, at minimum, have write access to the Responses API.
 
 If you've used the Codex CLI before with usage-based billing via an API key and want to switch to using your ChatGPT plan, follow these steps:
 
-1. Update the CLI and ensure `codex --version` is `0.20.0` or later
-2. Delete `~/.codex/auth.json` (on Windows: `C:\\Users\\USERNAME\\.codex\\auth.json`)
-3. Run `codex login` again
+1. Update the CLI and ensure `icodex --version` is `0.20.0` or later
+2. Delete `~/.icodex/auth.json` (on Windows: `C:\\Users\\USERNAME\\.icodex\\auth.json`)
+3. Run `icodex login` again
 
 ## Connecting on a "Headless" Machine
 
@@ -24,28 +24,28 @@ Today, the login process entails running a server on `localhost:1455`. If you ar
 
 ### Authenticate locally and copy your credentials to the "headless" machine
 
-The easiest solution is likely to run through the `codex login` process on your local machine such that `localhost:1455` _is_ accessible in your web browser. When you complete the authentication process, an `auth.json` file should be available at `$CODEX_HOME/auth.json` (on Mac/Linux, `$CODEX_HOME` defaults to `~/.codex` whereas on Windows, it defaults to `%USERPROFILE%\\.codex`).
+The easiest solution is likely to run through the `icodex login` process on your local machine such that `localhost:1455` _is_ accessible in your web browser. When you complete the authentication process, an `auth.json` file should be available at `$CODEX_HOME/auth.json` (on Mac/Linux, `$CODEX_HOME` defaults to `~/.icodex` whereas on Windows, it defaults to `%USERPROFILE%\\.icodex`).
 
-Because the `auth.json` file is not tied to a specific host, once you complete the authentication flow locally, you can copy the `$CODEX_HOME/auth.json` file to the headless machine and then `codex` should "just work" on that machine. Note to copy a file to a Docker container, you can do:
+Because the `auth.json` file is not tied to a specific host, once you complete the authentication flow locally, you can copy the `$CODEX_HOME/auth.json` file to the headless machine and then `icodex` should "just work" on that machine. Note to copy a file to a Docker container, you can do:
 
 ```shell
 # substitute MY_CONTAINER with the name or id of your Docker container:
 CONTAINER_HOME=$(docker exec MY_CONTAINER printenv HOME)
-docker exec MY_CONTAINER mkdir -p "$CONTAINER_HOME/.codex"
-docker cp auth.json MY_CONTAINER:"$CONTAINER_HOME/.codex/auth.json"
+docker exec MY_CONTAINER mkdir -p "$CONTAINER_HOME/.icodex"
+docker cp auth.json MY_CONTAINER:"$CONTAINER_HOME/.icodex/auth.json"
 ```
 
 whereas if you are `ssh`'d into a remote machine, you likely want to use [`scp`](https://en.wikipedia.org/wiki/Secure_copy_protocol):
 
 ```shell
-ssh user@remote 'mkdir -p ~/.codex'
-scp ~/.codex/auth.json user@remote:~/.codex/auth.json
+ssh user@remote 'mkdir -p ~/.icodex'
+scp ~/.icodex/auth.json user@remote:~/.icodex/auth.json
 ```
 
 or try this one-liner:
 
 ```shell
-ssh user@remote 'mkdir -p ~/.codex && cat > ~/.codex/auth.json' < ~/.codex/auth.json
+ssh user@remote 'mkdir -p ~/.icodex && cat > ~/.icodex/auth.json' < ~/.icodex/auth.json
 ```
 
 ### Connecting through VPS or remote
@@ -57,4 +57,4 @@ If you run Codex on a remote machine (VPS/server) without a local browser, the l
 ssh -L 1455:localhost:1455 <user>@<remote-host>
 ```
 
-Then, in that SSH session, run `codex` and select "Sign in with ChatGPT". When prompted, open the printed URL (it will be `http://localhost:1455/...`) in your local browser. The traffic will be tunneled to the remote server. 
+Then, in that SSH session, run `icodex` and select "Sign in with ChatGPT". When prompted, open the printed URL (it will be `http://localhost:1455/...`) in your local browser. The traffic will be tunneled to the remote server. 

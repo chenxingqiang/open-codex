@@ -14,7 +14,7 @@ jobs:
     name: Detect changed areas
     runs-on: ubuntu-24.04
     outputs:
-      codex: ${{ steps.detect.outputs.codex }}
+      icodex: ${{ steps.detect.outputs.icodex }}
       workflows: ${{ steps.detect.outputs.workflows }}
     steps:
       - uses: actions/checkout@v5
@@ -33,17 +33,17 @@ jobs:
             mapfile -t files < <(git diff --name-only --no-renames "$BASE_SHA"...HEAD)
           else
             # On push / manual runs, default to running everything
-            files=("codex-rs/force" ".github/force")
+            files=("icodex-rs/force" ".github/force")
           fi
 
-          codex=false
+          icodex=false
           workflows=false
           for f in "${files[@]}"; do
-            [[ $f == codex-rs/* ]] && codex=true
+            [[ $f == icodex-rs/* ]] && icodex=true
             [[ $f == .github/* ]] && workflows=true
           done
 
-          echo "codex=$codex" >> "$GITHUB_OUTPUT"
+          echo "icodex=$icodex" >> "$GITHUB_OUTPUT"
           echo "workflows=$workflows" >> "$GITHUB_OUTPUT"
 
   # --- CI that doesn't need specific targets ---------------------------------
@@ -51,10 +51,10 @@ jobs:
     name: Format / etc
     runs-on: ubuntu-24.04
     needs: changed
-    if: ${{ needs.changed.outputs.codex == 'true' || needs.changed.outputs.workflows == 'true' || github.event_name == 'push' }}
+    if: ${{ needs.changed.outputs.icodex == 'true' || needs.changed.outputs.workflows == 'true' || github.event_name == 'push' }}
     defaults:
       run:
-        working-directory: codex-rs
+        working-directory: icodex-rs
     steps:
       - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@1.89
@@ -69,10 +69,10 @@ jobs:
     name: cargo shear
     runs-on: ubuntu-24.04
     needs: changed
-    if: ${{ needs.changed.outputs.codex == 'true' || needs.changed.outputs.workflows == 'true' || github.event_name == 'push' }}
+    if: ${{ needs.changed.outputs.icodex == 'true' || needs.changed.outputs.workflows == 'true' || github.event_name == 'push' }}
     defaults:
       run:
-        working-directory: codex-rs
+        working-directory: icodex-rs
     steps:
       - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@1.89
@@ -90,10 +90,10 @@ jobs:
     timeout-minutes: 30
     needs: changed
     # Keep job-level if to avoid spinning up runners when not needed
-    if: ${{ needs.changed.outputs.codex == 'true' || needs.changed.outputs.workflows == 'true' || github.event_name == 'push' }}
+    if: ${{ needs.changed.outputs.icodex == 'true' || needs.changed.outputs.workflows == 'true' || github.event_name == 'push' }}
     defaults:
       run:
-        working-directory: codex-rs
+        working-directory: icodex-rs
 
     strategy:
       fail-fast: false
@@ -155,7 +155,7 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            ${{ github.workspace }}/codex-rs/target/
+            ${{ github.workspace }}/icodex-rs/target/
           key: cargo-${{ matrix.runner }}-${{ matrix.target }}-${{ matrix.profile }}-${{ hashFiles('**/Cargo.lock') }}
 
       - if: ${{ matrix.target == 'x86_64-unknown-linux-musl' || matrix.target == 'aarch64-unknown-linux-musl'}}
@@ -220,7 +220,7 @@ jobs:
 
           # If nothing relevant changed (PR touching only root README, etc.),
           # declare success regardless of other jobs.
-          if [[ '${{ needs.changed.outputs.codex }}' != 'true' && '${{ needs.changed.outputs.workflows }}' != 'true' && '${{ github.event_name }}' != 'push' ]]; then
+          if [[ '${{ needs.changed.outputs.icodex }}' != 'true' && '${{ needs.changed.outputs.workflows }}' != 'true' && '${{ github.event_name }}' != 'push' ]]; then
             echo 'No relevant changes -> CI not required.'
             exit 0
           fi

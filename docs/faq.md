@@ -8,7 +8,7 @@ In 2021, OpenAI released Codex, an AI system designed to generate code from natu
 
 We recommend using Codex with GPT-5, our best coding model. The default reasoning level is medium, and you can upgrade to high for complex tasks with the `/model` command.
 
-You can also use older models by using API-based auth and launching codex with the `--model` flag.
+You can also use older models by using API-based auth and launching icodex with the `--model` flag.
 
 ### Why does `o3` or `o4-mini` not work for me?
 
@@ -16,7 +16,7 @@ It's possible that your [API account needs to be verified](https://help.openai.c
 
 ### How do I stop Codex from editing my files?
 
-By default, Codex can modify files in your current working directory (Auto mode). To prevent edits, run `codex` in read-only mode with the CLI flag `--sandbox read-only`. Alternatively, you can change the approval level mid-conversation with `/approvals`.
+By default, Codex can modify files in your current working directory (Auto mode). To prevent edits, run `icodex` in read-only mode with the CLI flag `--sandbox read-only`. Alternatively, you can change the approval level mid-conversation with `/approvals`.
 
 ### Does it work on Windows?
 

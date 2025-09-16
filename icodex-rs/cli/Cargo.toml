@@ -1,0 +1,46 @@
+[package]
+edition = "2024"
+name = "icodex-cli"
+version = { workspace = true }
+
+[[bin]]
+name = "icodex"
+path = "src/main.rs"
+
+[lib]
+name = "codex_cli"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+clap_complete = "4"
+icodex-arg0 = { path = "../arg0" }
+icodex-chatgpt = { path = "../chatgpt" }
+icodex-common = { path = "../common", features = ["cli"] }
+icodex-core = { path = "../core" }
+icodex-exec = { path = "../exec" }
+icodex-login = { path = "../login" }
+icodex-mcp-server = { path = "../mcp-server" }
+icodex-protocol = { path = "../protocol" }
+icodex-protocol-ts = { path = "../protocol-ts" }
+icodex-tui = { path = "../tui" }
+serde_json = "1"
+tokio = { version = "1", features = [
+    "io-std",
+    "macros",
+    "process",
+    "rt-multi-thread",
+    "signal",
+] }
+tracing = "0.1.41"
+tracing-subscriber = "0.3.20"
+
+[dev-dependencies]
+assert_cmd = "2"
+predicates = "3"
+pretty_assertions = "1"
+tempfile = "3"

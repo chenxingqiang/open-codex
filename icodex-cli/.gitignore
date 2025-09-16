@@ -1,0 +1,7 @@
+# Added by ./scripts/install_native_deps.sh
+/bin/icodex-aarch64-apple-darwin
+/bin/icodex-aarch64-unknown-linux-musl
+/bin/icodex-linux-sandbox-arm64
+/bin/icodex-linux-sandbox-x64
+/bin/icodex-x86_64-apple-darwin
+/bin/icodex-x86_64-unknown-linux-musl

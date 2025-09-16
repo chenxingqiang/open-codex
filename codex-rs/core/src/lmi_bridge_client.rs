@@ -4,34 +4,24 @@
 //! that uses the large-models-interface package to support 51+ model providers.
 
 use crate::client_common::ResponseItem;
+use crate::config::Config;
 use crate::error::CodexErr;
 use crate::model_family::ModelFamily;
-use crate::openai_tools::OpenAiTool;
+use crate::openai_tools::{OpenAiTool, ConfigShellToolType, ToolsConfig};
 use crate::protocol::AskForApproval;
 use crate::protocol::SandboxPolicy;
 use crate::tool_apply_patch::ApplyPatchToolType;
 use crate::tool_apply_patch::create_apply_patch_freeform_tool;
 use crate::tool_apply_patch::create_apply_patch_json_tool;
-use crate::tool_exec_command::create_exec_command_tool_for_responses_api;
-use crate::tool_exec_command::create_write_stdin_tool_for_responses_api;
 use crate::tool_plan::PLAN_TOOL;
-use crate::tool_unified_exec::create_unified_exec_tool;
-use crate::tool_web_search::create_web_search_tool;
-use crate::tool_view_image::create_view_image_tool;
 use crate::CodexAuth;
-use crate::Config;
 use crate::ModelProviderInfo;
 use crate::Prompt;
 use crate::ResponseStream;
-use crate::ToolsConfig;
-use crate::VerbosityConfig;
 use crate::WireApi;
 use codex_protocol::mcp_protocol::AuthMode;
-use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use serde_json::Value as JsonValue;
-use std::collections::HashMap;
-use std::io::{BufRead, BufReader, Write};
 use std::process::{Child, Command, Stdio};
 use std::sync::Arc;
 use tokio::io::{AsyncBufReadExt, AsyncWriteExt};
@@ -90,7 +80,7 @@ impl LmiBridgeClient {
             .stderr(Stdio::inherit());
 
         let mut child = cmd.spawn().map_err(|e| {
-            CodexErr::Internal(format!("Failed to start LMI bridge: {}", e))
+            CodexErr::Stream(format!("Failed to start LMI bridge: {}", e), None)
         })?;
 
         let stdin = child.stdin.take().unwrap();
@@ -106,27 +96,27 @@ impl LmiBridgeClient {
     /// Send a request to the LMI bridge
     async fn send_request(&self, request: LmiBridgeRequest) -> Result<LmiBridgeResponse, CodexErr> {
         let stdin = self.bridge_stdin.as_ref().ok_or_else(|| {
-            CodexErr::Internal("Bridge not started".to_string())
+            CodexErr::Stream("Bridge not started".to_string(), None)
         })?;
 
         let stdout = self.bridge_stdout.as_ref().ok_or_else(|| {
-            CodexErr::Internal("Bridge not started".to_string())
+            CodexErr::Stream("Bridge not started".to_string(), None)
         })?;
 
         // Serialize and send request
         let request_json = serde_json::to_string(&request).map_err(|e| {
-            CodexErr::Internal(format!("Failed to serialize request: {}", e))
+            CodexErr::Stream(format!("Failed to serialize request: {}", e), None)
         })?;
 
         let mut stdin_guard = stdin.lock().await;
         stdin_guard.write_all(request_json.as_bytes()).await.map_err(|e| {
-            CodexErr::Internal(format!("Failed to write to bridge stdin: {}", e))
+            CodexErr::Stream(format!("Failed to write to bridge stdin: {}", e), None)
         })?;
         stdin_guard.write_all(b"\n").await.map_err(|e| {
-            CodexErr::Internal(format!("Failed to write newline to bridge stdin: {}", e))
+            CodexErr::Stream(format!("Failed to write newline to bridge stdin: {}", e), None)
         })?;
         stdin_guard.flush().await.map_err(|e| {
-            CodexErr::Internal(format!("Failed to flush bridge stdin: {}", e))
+            CodexErr::Stream(format!("Failed to flush bridge stdin: {}", e), None)
         })?;
         drop(stdin_guard);
 
@@ -134,19 +124,19 @@ impl LmiBridgeClient {
         let mut stdout_guard = stdout.lock().await;
         let mut response_line = String::new();
         stdout_guard.read_line(&mut response_line).await.map_err(|e| {
-            CodexErr::Internal(format!("Failed to read from bridge stdout: {}", e))
+            CodexErr::Stream(format!("Failed to read from bridge stdout: {}", e), None)
         })?;
         drop(stdout_guard);
 
         let response: LmiBridgeResponse = serde_json::from_str(&response_line).map_err(|e| {
-            CodexErr::Internal(format!("Failed to parse bridge response: {}", e))
+            CodexErr::Stream(format!("Failed to parse bridge response: {}", e), None)
         })?;
 
         if !response.success {
-            return Err(CodexErr::Internal(format!(
+            return Err(CodexErr::Stream(format!(
                 "Bridge request failed: {}",
                 response.error.unwrap_or_else(|| "Unknown error".to_string())
-            )));
+            ), None));
         }
 
         Ok(response)
@@ -160,7 +150,7 @@ impl LmiBridgeClient {
                 function: Some(LmiFunction {
                     name: func_tool.name.clone(),
                     description: Some(func_tool.description.clone()),
-                    parameters: Some(func_tool.parameters.clone()),
+                    parameters: Some(serde_json::to_value(&func_tool.parameters).unwrap_or(JsonValue::Null)),
                 }),
                 local_shell: None,
                 web_search: None,
@@ -271,22 +261,18 @@ impl LmiBridgeClient {
 
         // Add shell tool based on configuration
         match &self.config.tools_config.shell_type {
-            crate::flags::ConfigShellToolType::DefaultShell => {
+            ConfigShellToolType::DefaultShell => {
                 tools.push(create_shell_tool());
             }
-            crate::flags::ConfigShellToolType::ShellWithRequest { sandbox_policy } => {
+            ConfigShellToolType::ShellWithRequest { sandbox_policy } => {
                 tools.push(create_shell_tool_for_sandbox(sandbox_policy));
             }
-            crate::flags::ConfigShellToolType::LocalShell => {
+            ConfigShellToolType::LocalShell => {
                 tools.push(OpenAiTool::LocalShell {});
             }
-            crate::flags::ConfigShellToolType::StreamableShell => {
-                tools.push(OpenAiTool::Function(
-                    create_exec_command_tool_for_responses_api(),
-                ));
-                tools.push(OpenAiTool::Function(
-                    create_write_stdin_tool_for_responses_api(),
-                ));
+            ConfigShellToolType::StreamableShell => {
+                // For now, just add a basic shell tool
+                tools.push(create_shell_tool());
             }
         }
 
@@ -304,14 +290,6 @@ impl LmiBridgeClient {
                     tools.push(create_apply_patch_json_tool());
                 }
             }
-        }
-
-        if self.config.tools_config.web_search_request {
-            tools.push(create_web_search_tool());
-        }
-
-        if self.config.tools_config.view_image_request {
-            tools.push(create_view_image_tool());
         }
 
         tools
@@ -391,7 +369,10 @@ impl ResponseStream {
     fn from_lmi_response(response: LmiBridgeResponse) -> Self {
         // TODO: Implement proper conversion from LMI response to ResponseStream
         // For now, return an empty stream
-        ResponseStream::empty()
+        use tokio::sync::mpsc;
+        let (tx, rx) = mpsc::channel(1);
+        drop(tx); // Close the channel immediately
+        ResponseStream { rx_event: rx }
     }
 }
 

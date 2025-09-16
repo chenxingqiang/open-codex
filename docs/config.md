@@ -7,12 +7,12 @@ Codex supports several mechanisms for setting config values:
 - A generic `-c`/`--config` flag that takes a `key=value` pair, such as `--config model="o3"`.
   - The key can contain dots to set a value deeper than the root, e.g. `--config model_providers.openai.wire_api="chat"`.
   - For consistency with `config.toml`, values are a string in TOML format rather than JSON format, so use `key='{a = 1, b = 2}'` rather than `key='{"a": 1, "b": 2}'`.
-    - The quotes around the value are necessary, as without them your shell would split the config argument on spaces, resulting in `codex` receiving `-c key={a` with (invalid) additional arguments `=`, `1,`, `b`, `=`, `2}`.
+    - The quotes around the value are necessary, as without them your shell would split the config argument on spaces, resulting in `icodex` receiving `-c key={a` with (invalid) additional arguments `=`, `1,`, `b`, `=`, `2}`.
   - Values can contain any TOML object, such as `--config shell_environment_policy.include_only='["PATH", "HOME", "USER"]'`.
   - If `value` cannot be parsed as a valid TOML value, it is treated as a string value. This means that `-c model='"o3"'` and `-c model=o3` are equivalent.
     - In the first case, the value is the TOML string `"o3"`, while in the second the value is `o3`, which is not valid TOML and therefore treated as the TOML string `"o3"`.
     - Because quotes are interpreted by one's shell, `-c key="true"` will be correctly interpreted in TOML as `key = true` (a boolean) and not `key = "true"` (a string). If for some reason you needed the string `"true"`, you would need to use `-c key='"true"'` (note the two sets of quotes).
-- The `$CODEX_HOME/config.toml` configuration file where the `CODEX_HOME` environment value defaults to `~/.codex`. (Note `CODEX_HOME` will also be where logs and other Codex-related information are stored.)
+- The `$CODEX_HOME/config.toml` configuration file where the `CODEX_HOME` environment value defaults to `~/.icodex`. (Note `CODEX_HOME` will also be where logs and other Codex-related information are stored.)
 
 Both the `--config` flag and the `config.toml` file support the following options:
 
@@ -147,7 +147,7 @@ Determines when the user should be prompted to approve whether Codex can execute
 # Setting the approval_policy to `untrusted` means that Codex will prompt the
 # user before running a command not in the "trusted" set.
 #
-# See https://github.com/openai/codex/issues/1260 for the plan to enable
+# See https://github.com/openai/icodex/issues/1260 for the plan to enable
 # end-users to define their own trusted commands.
 approval_policy = "untrusted"
 ```
@@ -222,7 +222,7 @@ Users can specify config values at multiple levels. Order of precedence is as fo
 
 ## model_reasoning_effort
 
-If the selected model is known to support reasoning (for example: `o3`, `o4-mini`, `codex-*`, `gpt-5`), reasoning is enabled by default when using the Responses API. As explained in the [OpenAI Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#get-started-with-reasoning), this can be set to:
+If the selected model is known to support reasoning (for example: `o3`, `o4-mini`, `icodex-*`, `gpt-5`), reasoning is enabled by default when using the Responses API. As explained in the [OpenAI Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#get-started-with-reasoning), this can be set to:
 
 - `"minimal"`
 - `"low"`
@@ -233,7 +233,7 @@ Note: to minimize reasoning, choose `"minimal"`.
 
 ## model_reasoning_summary
 
-If the model name starts with `"o"` (as in `"o3"` or `"o4-mini"`) or `"codex"`, reasoning is enabled by default when using the Responses API. As explained in the [OpenAI Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#reasoning-summaries), this can be set to:
+If the model name starts with `"o"` (as in `"o3"` or `"o4-mini"`) or `"icodex"`, reasoning is enabled by default when using the Responses API. As explained in the [OpenAI Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#reasoning-summaries), this can be set to:
 
 - `"auto"` (default)
 - `"concise"`
@@ -355,7 +355,7 @@ This config option is comparable to how Claude and Cursor define `mcpServers` in
 }
 ```
 
-Should be represented as follows in `~/.codex/config.toml`:
+Should be represented as follows in `~/.icodex/config.toml`:
 
 ```toml
 # IMPORTANT: the top-level key is `mcp_servers` rather than `mcpServers`.
@@ -371,18 +371,18 @@ You can also manage these entries from the CLI [experimental]:
 
 ```shell
 # Add a server (env can be repeated; `--` separates the launcher command)
-codex mcp add docs -- docs-server --port 4000
+icodex mcp add docs -- docs-server --port 4000
 
 # List configured servers (pretty table or JSON)
-codex mcp list
-codex mcp list --json
+icodex mcp list
+icodex mcp list --json
 
 # Show one server (table or JSON)
-codex mcp get docs
-codex mcp get docs --json
+icodex mcp get docs
+icodex mcp get docs --json
 
 # Remove a server
-codex mcp remove docs
+icodex mcp remove docs
 ```
 
 ## shell_environment_policy
@@ -484,7 +484,7 @@ def main() -> int:
             "-message",
             message,
             "-group",
-            "codex",
+            "icodex",
             "-ignoreDnD",
             "-activate",
             "com.googlecode.iterm2",
@@ -498,10 +498,10 @@ if __name__ == "__main__":
     sys.exit(main())
 ```
 
-To have Codex use this script for notifications, you would configure it via `notify` in `~/.codex/config.toml` using the appropriate path to `notify.py` on your computer:
+To have Codex use this script for notifications, you would configure it via `notify` in `~/.icodex/config.toml` using the appropriate path to `notify.py` on your computer:
 
 ```toml
-notify = ["python3", "/Users/mbolin/.codex/notify.py"]
+notify = ["python3", "/Users/mbolin/.icodex/notify.py"]
 ```
 
 > [!NOTE]
