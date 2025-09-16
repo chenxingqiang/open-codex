@@ -1,6 +1,9 @@
 {
   "name": "@iechor/icodex",
-  "version": "0.0.0-dev",
+  "version": "0.1.0",
+  "description": "AI coding assistant with support for 51+ model providers through large-models-interface integration",
+  "keywords": ["ai", "coding", "assistant", "codex", "large-models", "openai", "anthropic", "google", "mistral"],
+  "author": "iEchor",
   "license": "Apache-2.0",
   "bin": {
     "icodex": "bin/icodex.js"
@@ -16,11 +19,14 @@
   },
   "files": [
     "bin",
-    "dist"
+    "src",
+    "scripts",
+    "LMI_INTEGRATION.md"
   ],
+  "homepage": "https://github.com/chenxingqiang/open-codex#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iechor/icodex.git"
+    "url": "git+https://github.com/chenxingqiang/open-codex.git"
   },
   "dependencies": {
     "@vscode/ripgrep": "^1.15.14",
