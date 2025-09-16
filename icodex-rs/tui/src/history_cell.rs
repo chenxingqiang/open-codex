@@ -591,7 +591,7 @@ fn title_case(s: &str) -> String {
 
 fn pretty_provider_name(id: &str) -> String {
     if id.eq_ignore_ascii_case("openai") {
-        "OpenAI".to_string()
+        "iEchor".to_string()
     } else {
         title_case(id)
     }
@@ -775,15 +775,15 @@ impl HistoryCell for SessionHeaderHistoryCell {
         top.push('╮');
         out.push(Line::from(top.dim()));
 
-        // Title line rendered inside the box: " >_ OpenAI Codex (vX)"
-        let title_text = format!(" >_ OpenAI Codex (v{})", self.version);
+        // Title line rendered inside the box: " >_ iEchor Codex (vX)"
+        let title_text = format!(" >_ iEchor Codex (v{})", self.version);
         let title_w = UnicodeWidthStr::width(title_text.as_str());
         let pad_w = inner_width.saturating_sub(title_w);
         let mut title_spans: Vec<Span<'static>> = vec![
             Span::from("│").dim(),
             Span::from(" ").dim(),
             Span::from(">_ ").dim(),
-            Span::from("OpenAI Codex").bold(),
+            Span::from("iEchor Codex").bold(),
             Span::from(" ").dim(),
             Span::from(format!("(v{})", self.version)).dim(),
         ];
@@ -1199,7 +1199,7 @@ pub(crate) fn empty_mcp_output() -> PlainHistoryCell {
         "  • No MCP servers configured.".italic().into(),
         Line::from(vec![
             "    See the ".into(),
-            "\u{1b}]8;;https://github.com/openai/icodex/blob/main/docs/config.md#mcp_servers\u{7}MCP docs\u{1b}]8;;\u{7}".underlined(),
+            "\u{1b}]8;;https://github.com/iechor/icodex/blob/main/docs/config.md#mcp_servers\u{7}MCP docs\u{1b}]8;;\u{7}".underlined(),
             " to configure them.".into(),
         ])
         .style(Style::default().add_modifier(Modifier::DIM)),

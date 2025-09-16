@@ -38,7 +38,7 @@ pub struct FreeformToolFormat {
     pub(crate) definition: String,
 }
 
-/// When serialized as JSON, this produces a valid "Tool" in the OpenAI
+/// When serialized as JSON, this produces a valid "Tool" in the iEchor
 /// Responses API.
 #[derive(Debug, Clone, Serialize, PartialEq)]
 #[serde(tag = "type")]
@@ -385,7 +385,7 @@ pub(crate) fn mcp_tool_to_openai_tool(
         ..
     } = tool;
 
-    // OpenAI models mandate the "properties" field in the schema. The Agents
+    // iEchor models mandate the "properties" field in the schema. The Agents
     // SDK fixed this by inserting an empty object for "properties" if it is not
     // already present https://github.com/openai/openai-agents-python/issues/449
     // so here we do the same.
@@ -589,7 +589,7 @@ pub(crate) fn get_openai_tools(
             match mcp_tool_to_openai_tool(name.clone(), tool.clone()) {
                 Ok(converted_tool) => tools.push(OpenAiTool::Function(converted_tool)),
                 Err(e) => {
-                    tracing::error!("Failed to convert {name:?} MCP tool to OpenAI tool: {e:?}");
+                    tracing::error!("Failed to convert {name:?} MCP tool to iEchor tool: {e:?}");
                 }
             }
         }

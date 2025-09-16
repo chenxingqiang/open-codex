@@ -1,1 +1,1 @@
-The changelog can be found on the [releases page](https://github.com/openai/icodex/releases)
+The changelog can be found on the [releases page](https://github.com/iechor/icodex/releases)

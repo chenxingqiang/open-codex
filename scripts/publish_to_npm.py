@@ -5,8 +5,8 @@ Download a release artifact for the npm package and publish it.
 
 Given a release version like `0.20.0`, this script:
   - Downloads the `icodex-npm-<version>.tgz` asset from the GitHub release
-    tagged `rust-v<version>` in the `openai/icodex` repository using `gh`.
-  - Runs `npm publish` on the downloaded tarball to publish `@openai/icodex`.
+    tagged `rust-v<version>` in the `iechor/icodex` repository using `gh`.
+  - Runs `npm publish` on the downloaded tarball to publish `@iechor/icodex`.
 
 Flags:
   - `--dry-run` delegates to `npm publish --dry-run`. The artifact is still
@@ -15,7 +15,7 @@ Flags:
 Requirements:
   - GitHub CLI (`gh`) must be installed and authenticated to access the repo.
   - npm must be logged in with an account authorized to publish
-    `@openai/icodex`. This may trigger a browser for 2FA.
+    `@iechor/icodex`. This may trigger a browser for 2FA.
 """
 
 import argparse
@@ -69,7 +69,7 @@ def main() -> int:
     download_dir.mkdir(parents=True, exist_ok=True)
 
     # 1) Download the artifact using gh
-    repo = "openai/icodex"
+    repo = "iechor/icodex"
     gh_cmd = [
         "gh",
         "release",

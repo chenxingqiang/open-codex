@@ -1,0 +1,20 @@
+[package]
+edition = "2024"
+name = "iicodex-arg0"
+version = { workspace = true }
+
+[lib]
+name = "iicodex_arg0"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = "1"
+dotenvy = "0.15.7"
+iicodex-apply-patch = { path = "../apply-patch" }
+iicodex-core = { path = "../core" }
+iicodex-linux-sandbox = { path = "../linux-sandbox" }
+tempfile = "3"
+tokio = { version = "1", features = ["rt-multi-thread"] }

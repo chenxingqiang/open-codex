@@ -55,7 +55,7 @@ class LMICLI {
       console.log(`  Base URL: ${provider.base_url || 'N/A'}`);
       console.log(`  API Key Env: ${provider.env_key || 'N/A'}`);
       console.log(`  Wire API: ${provider.wire_api}`);
-      console.log(`  Requires OpenAI Auth: ${provider.requires_openai_auth}`);
+      console.log(`  Requires iEchor Auth: ${provider.requires_openai_auth}`);
       console.log('');
     }
   }

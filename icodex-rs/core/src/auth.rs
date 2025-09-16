@@ -91,7 +91,7 @@ impl CodexAuth {
                     )
                     .await
                     .map_err(|_| {
-                        std::io::Error::other("timed out while refreshing OpenAI API key")
+                        std::io::Error::other("timed out while refreshing iEchor API key")
                     })?
                     .map_err(std::io::Error::other)?;
 

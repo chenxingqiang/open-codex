@@ -77,7 +77,7 @@ pub enum ResponseItem {
         call_id: String,
     },
     // NOTE: The input schema for `function_call_output` objects that clients send to the
-    // OpenAI /v1/responses endpoint is NOT the same shape as the objects the server returns on the
+    // iEchor /v1/responses endpoint is NOT the same shape as the objects the server returns on the
     // SSE stream. When *sending* we must wrap the string output inside an object that includes a
     // required `success` boolean. The upstream TypeScript CLI does this implicitly. To ensure we
     // serialize exactly the expected shape we introduce a dedicated payload struct and flatten it
@@ -275,7 +275,7 @@ impl Serialize for FunctionCallOutputPayload {
     {
         // The upstream TypeScript CLI always serializes `output` as a *plain string* regardless
         // of whether the function call succeeded or failed. The boolean is purely informational
-        // for local bookkeeping and is NOT sent to the OpenAI endpoint. Sending the nested object
+        // for local bookkeeping and is NOT sent to the iEchor endpoint. Sending the nested object
         // form `{ content, success:false }` triggers the 400 we are still seeing. Mirror the JS CLI
         // exactly: always emit a bare string.
 

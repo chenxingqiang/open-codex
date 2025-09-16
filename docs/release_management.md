@@ -2,8 +2,8 @@
 
 Currently, we made Codex binaries available in three places:
 
-- GitHub Releases https://github.com/openai/icodex/releases/
-- `@openai/icodex` on npm: https://www.npmjs.com/package/@openai/icodex
+- GitHub Releases https://github.com/iechor/icodex/releases/
+- `@iechor/icodex` on npm: https://www.npmjs.com/package/@iechor/icodex
 - `icodex` on Homebrew: https://formulae.brew.sh/formula/icodex
 
 # Cutting a Release
@@ -24,7 +24,7 @@ To cut a new _public_ release from `main` (which requires more caution), run:
 
 TIP: Add the `--dry-run` flag to report the next version number for the respective release and exit.
 
-Running the publishing script will kick off a GitHub Action to build the release, so go to https://github.com/openai/icodex/actions/workflows/rust-release.yml to find the corresponding workflow. (Note: we should automate finding the workflow URL with `gh`.)
+Running the publishing script will kick off a GitHub Action to build the release, so go to https://github.com/iechor/icodex/actions/workflows/rust-release.yml to find the corresponding workflow. (Note: we should automate finding the workflow URL with `gh`.)
 
 When the workflow finishes, the GitHub Release is "done," but you still have to consider npm and Homebrew.
 
@@ -37,7 +37,7 @@ VERSION=0.21.0
 ./scripts/publish_to_npm.py "$VERSION"
 ```
 
-Note that you must have permissions to publish to https://www.npmjs.com/package/@openai/icodex for this to succeed.
+Note that you must have permissions to publish to https://www.npmjs.com/package/@iechor/icodex for this to succeed.
 
 ## Publishing to Homebrew
 

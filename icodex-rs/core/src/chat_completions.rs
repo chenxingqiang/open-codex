@@ -351,7 +351,7 @@ async fn process_chat_sse<S>(
     let mut stream = stream.eventsource();
 
     // State to accumulate a function call across streaming chunks.
-    // OpenAI may split the `arguments` string over multiple `delta` events
+    // iEchor may split the `arguments` string over multiple `delta` events
     // until the chunk whose `finish_reason` is `tool_calls` is emitted. We
     // keep collecting the pieces here and forward a single
     // `ResponseItem::FunctionCall` once the call is complete.
@@ -397,7 +397,7 @@ async fn process_chat_sse<S>(
             }
         };
 
-        // OpenAI Chat streaming sends a literal string "[DONE]" when finished.
+        // iEchor Chat streaming sends a literal string "[DONE]" when finished.
         if sse.data.trim() == "[DONE]" {
             // Emit any finalized items before closing so downstream consumers receive
             // terminal events for both assistant content and raw reasoning.

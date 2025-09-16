@@ -1,0 +1,22 @@
+[package]
+edition = "2024"
+name = "iicodex-protocol-ts"
+version = { workspace = true }
+
+[lints]
+workspace = true
+
+[lib]
+name = "iicodex_protocol_ts"
+path = "src/lib.rs"
+
+[[bin]]
+name = "iicodex-protocol-ts"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+iicodex-protocol = { path = "../protocol" }
+mcp-types = { path = "../mcp-types" }
+ts-rs = "11"

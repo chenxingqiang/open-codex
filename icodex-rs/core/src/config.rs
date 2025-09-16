@@ -166,7 +166,7 @@ pub struct Config {
     /// Optional verbosity control for GPT-5 models (Responses API `text.verbosity`).
     pub model_verbosity: Option<Verbosity>,
 
-    /// Base URL for requests to ChatGPT (as opposed to the OpenAI API).
+    /// Base URL for requests to ChatGPT (as opposed to the iEchor API).
     pub chatgpt_base_url: String,
 
     /// Include an experimental plan tool that the model can use to update its current plan and status of each step.
@@ -687,7 +687,7 @@ pub struct ConfigToml {
     /// Override to force reasoning summary format for the configured model.
     pub model_reasoning_summary_format: Option<ReasoningSummaryFormat>,
 
-    /// Base URL for requests to ChatGPT (as opposed to the OpenAI API).
+    /// Base URL for requests to ChatGPT (as opposed to the iEchor API).
     pub chatgpt_base_url: Option<String>,
 
     /// Experimental path to a file whose contents replace the built-in BASE_INSTRUCTIONS.
@@ -1469,7 +1469,7 @@ approval_policy = "untrusted"
 profile = "gpt3"
 
 [model_providers.openai-chat-completions]
-name = "OpenAI using Chat Completions"
+name = "iEchor using Chat Completions"
 base_url = "https://api.openai.com/v1"
 env_key = "OPENAI_API_KEY"
 wire_api = "chat"
@@ -1515,7 +1515,7 @@ model_verbosity = "high"
         let icodex_home_temp_dir = TempDir::new().unwrap();
 
         let openai_chat_completions_provider = ModelProviderInfo {
-            name: "OpenAI using Chat Completions".to_string(),
+            name: "iEchor using Chat Completions".to_string(),
             base_url: Some("https://api.openai.com/v1".to_string()),
             env_key: Some("OPENAI_API_KEY".to_string()),
             wire_api: crate::WireApi::Chat,

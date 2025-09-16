@@ -17,9 +17,9 @@ rec {
       openssl
     ];
     meta = with pkgs.lib; {
-      description = "OpenAI Codex command‑line interface rust implementation";
+      description = "iEchor Codex command‑line interface rust implementation";
       license = licenses.asl20;
-      homepage = "https://github.com/openai/icodex";
+      homepage = "https://github.com/iechor/icodex";
     };
   };
   devShell = pkgs.mkShell {

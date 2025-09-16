@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------------------
 # stage_release.sh
 # -----------------------------------------------------------------------------
-# Stages an npm release for @openai/icodex.
+# Stages an npm release for @iechor/icodex.
 #
 # Usage:
 #

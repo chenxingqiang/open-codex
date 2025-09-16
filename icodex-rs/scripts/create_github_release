@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 
-REPO = "openai/icodex"
+REPO = "iechor/icodex"
 BRANCH_REF = "heads/main"
 CARGO_TOML_PATH = "icodex-rs/Cargo.toml"
 

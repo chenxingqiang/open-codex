@@ -41,7 +41,7 @@ LARGE_ENUMS = {"ServerResult"}
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Embed, cluster and analyse text prompts via the OpenAI API.",
+        description="Embed, cluster and analyse text prompts via the iEchor API.",
     )
 
     default_schema_file = (

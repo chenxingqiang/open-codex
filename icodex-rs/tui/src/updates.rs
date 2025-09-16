@@ -53,7 +53,7 @@ struct ReleaseInfo {
 }
 
 const VERSION_FILENAME: &str = "version.json";
-const LATEST_RELEASE_URL: &str = "https://api.github.com/repos/openai/icodex/releases/latest";
+const LATEST_RELEASE_URL: &str = "https://api.github.com/repos/iechor/icodex/releases/latest";
 
 fn version_filepath(config: &Config) -> PathBuf {
     config.icodex_home.join(VERSION_FILENAME)

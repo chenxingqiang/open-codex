@@ -28,7 +28,7 @@ model = "o3"  # overrides the default of "gpt-5"
 
 This option lets you override and amend the default set of model providers bundled with Codex. This value is a map where the key is the value to use with `model_provider` to select the corresponding provider.
 
-For example, if you wanted to add a provider that uses the OpenAI 4o model via the chat completions API, then you could add the following configuration:
+For example, if you wanted to add a provider that uses the iEchor 4o model via the chat completions API, then you could add the following configuration:
 
 ```toml
 # Recall that in TOML, root keys must be listed before tables.
@@ -37,7 +37,7 @@ model_provider = "openai-chat-completions"
 
 [model_providers.openai-chat-completions]
 # Name of the provider that will be displayed in the Codex UI.
-name = "OpenAI using Chat Completions"
+name = "iEchor using Chat Completions"
 # The path `/chat/completions` will be amended to this URL to make the POST
 # request for the chat completions.
 base_url = "https://api.openai.com/v1"
@@ -52,7 +52,7 @@ wire_api = "chat"
 query_params = {}
 ```
 
-Note this makes it possible to use Codex CLI with non-OpenAI models, so long as they use a wire API that is compatible with the OpenAI chat completions API. For example, you could define the following provider to use Codex CLI with Ollama running locally:
+Note this makes it possible to use Codex CLI with non-iEchor models, so long as they use a wire API that is compatible with the iEchor chat completions API. For example, you could define the following provider to use Codex CLI with Ollama running locally:
 
 ```toml
 [model_providers.ollama]
@@ -104,7 +104,7 @@ Example:
 
 ```toml
 [model_providers.openai]
-name = "OpenAI"
+name = "iEchor"
 base_url = "https://api.openai.com/v1"
 env_key = "OPENAI_API_KEY"
 # network tuning overrides (all optional; falls back to built‑in defaults)
@@ -147,7 +147,7 @@ Determines when the user should be prompted to approve whether Codex can execute
 # Setting the approval_policy to `untrusted` means that Codex will prompt the
 # user before running a command not in the "trusted" set.
 #
-# See https://github.com/openai/icodex/issues/1260 for the plan to enable
+# See https://github.com/iechor/icodex/issues/1260 for the plan to enable
 # end-users to define their own trusted commands.
 approval_policy = "untrusted"
 ```
@@ -191,7 +191,7 @@ approval_policy = "untrusted"
 profile = "o3"
 
 [model_providers.openai-chat-completions]
-name = "OpenAI using Chat Completions"
+name = "iEchor using Chat Completions"
 base_url = "https://api.openai.com/v1"
 env_key = "OPENAI_API_KEY"
 wire_api = "chat"
@@ -222,7 +222,7 @@ Users can specify config values at multiple levels. Order of precedence is as fo
 
 ## model_reasoning_effort
 
-If the selected model is known to support reasoning (for example: `o3`, `o4-mini`, `icodex-*`, `gpt-5`), reasoning is enabled by default when using the Responses API. As explained in the [OpenAI Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#get-started-with-reasoning), this can be set to:
+If the selected model is known to support reasoning (for example: `o3`, `o4-mini`, `icodex-*`, `gpt-5`), reasoning is enabled by default when using the Responses API. As explained in the [iEchor Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#get-started-with-reasoning), this can be set to:
 
 - `"minimal"`
 - `"low"`
@@ -233,7 +233,7 @@ Note: to minimize reasoning, choose `"minimal"`.
 
 ## model_reasoning_summary
 
-If the model name starts with `"o"` (as in `"o3"` or `"o4-mini"`) or `"icodex"`, reasoning is enabled by default when using the Responses API. As explained in the [OpenAI Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#reasoning-summaries), this can be set to:
+If the model name starts with `"o"` (as in `"o3"` or `"o4-mini"`) or `"icodex"`, reasoning is enabled by default when using the Responses API. As explained in the [iEchor Platform documentation](https://platform.openai.com/docs/guides/reasoning?api-mode=responses#reasoning-summaries), this can be set to:
 
 - `"auto"` (default)
 - `"concise"`
@@ -266,7 +266,7 @@ Note: This applies only to providers using the Responses API. Chat Completions p
 
 ## model_supports_reasoning_summaries
 
-By default, `reasoning` is only set on requests to OpenAI models that are known to support them. To force `reasoning` to set on requests to the current model, you can force this behavior by setting the following in `config.toml`:
+By default, `reasoning` is only set on requests to iEchor models that are known to support them. To force `reasoning` to set on requests to the current model, you can force this behavior by setting the following in `config.toml`:
 
 ```toml
 model_supports_reasoning_summaries = true
@@ -563,7 +563,7 @@ show_raw_agent_reasoning = true  # defaults to false
 
 The size of the context window for the model, in tokens.
 
-In general, Codex knows the context window for the most common OpenAI models, but if you are using a new model with an old version of the Codex CLI, then you can use `model_context_window` to tell Codex what value to use to determine how much context is left during a conversation.
+In general, Codex knows the context window for the most common iEchor models, but if you are using a new model with an old version of the Codex CLI, then you can use `model_context_window` to tell Codex what value to use to determine how much context is left during a conversation.
 
 ## model_max_output_tokens
 

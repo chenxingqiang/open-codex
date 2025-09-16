@@ -294,7 +294,7 @@ async fn run_ratatui_app(
         ]));
 
         if managed_by_npm {
-            let npm_cmd = "npm install -g @openai/icodex@latest";
+            let npm_cmd = "npm install -g @iechor/icodex@latest";
             lines.push(Line::from(vec![
                 "Run ".into(),
                 npm_cmd.cyan(),
@@ -312,7 +312,7 @@ async fn run_ratatui_app(
         } else {
             lines.push(Line::from(vec![
                 "See ".into(),
-                "https://github.com/openai/icodex/releases/latest".cyan(),
+                "https://github.com/iechor/icodex/releases/latest".cyan(),
                 " for the latest releases and installation options.".into(),
             ]));
         }
@@ -447,7 +447,7 @@ pub enum LoginStatus {
 
 fn get_login_status(config: &Config) -> LoginStatus {
     if config.model_provider.requires_openai_auth {
-        // Reading the OpenAI API key is an async operation because it may need
+        // Reading the iEchor API key is an async operation because it may need
         // to refresh the token. Block on it.
         let icodex_home = config.icodex_home.clone();
         match CodexAuth::from_icodex_home(&icodex_home) {
@@ -512,8 +512,8 @@ fn should_show_onboarding(
 }
 
 fn should_show_login_screen(login_status: LoginStatus, config: &Config) -> bool {
-    // Only show the login screen for providers that actually require OpenAI auth
-    // (OpenAI or equivalents). For OSS/other providers, skip login entirely.
+    // Only show the login screen for providers that actually require iEchor auth
+    // (iEchor or equivalents). For OSS/other providers, skip login entirely.
     if !config.model_provider.requires_openai_auth {
         return false;
     }

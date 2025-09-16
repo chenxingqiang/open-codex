@@ -1,11 +1,11 @@
-<h1 align="center">OpenAI Codex CLI</h1>
+<h1 align="center">iEchor Codex CLI</h1>
 
-<p align="center"><code>npm i -g @openai/icodex</code><br />or <code>brew install icodex</code></p>
+<p align="center"><code>npm i -g @iechor/icodex</code><br />or <code>brew install icodex</code></p>
 
-<p align="center"><strong>Codex CLI</strong> is a coding agent from OpenAI that runs locally on your computer.
+<p align="center"><strong>Codex CLI</strong> is a coding agent from iEchor that runs locally on your computer.
 </br>
 </br>If you want Codex in your code editor (VS Code, Cursor, Windsurf), <a href="https://developers.openai.com/icodex/ide">install in your IDE</a>
-</br>If you are looking for the <em>cloud-based agent</em> from OpenAI, <strong>Codex Web</strong>, go to <a href="https://chatgpt.com/icodex">chatgpt.com/icodex</a></p>
+</br>If you are looking for the <em>cloud-based agent</em> from iEchor, <strong>Codex Web</strong>, go to <a href="https://chatgpt.com/icodex">chatgpt.com/icodex</a></p>
 
 <p align="center">
   <img src="./.github/icodex-cli-splash.png" alt="Codex CLI splash" width="80%" />
@@ -20,7 +20,7 @@
 Install globally with your preferred package manager. If you use npm:
 
 ```shell
-npm install -g @openai/icodex
+npm install -g @iechor/icodex
 ```
 
 Alternatively, if you use Homebrew:
@@ -36,7 +36,7 @@ icodex
 ```
 
 <details>
-<summary>You can also go to the <a href="https://github.com/openai/icodex/releases/latest">latest GitHub Release</a> and download the appropriate binary for your platform.</summary>
+<summary>You can also go to the <a href="https://github.com/iechor/icodex/releases/latest">latest GitHub Release</a> and download the appropriate binary for your platform.</summary>
 
 Each GitHub Release contains many executables, but in practice, you likely want one of these:
 
@@ -59,7 +59,7 @@ Each archive contains a single entry with the platform baked into the name (e.g.
 
 Run `icodex` and select **Sign in with ChatGPT**. We recommend signing into your ChatGPT account to use Codex as part of your Plus, Pro, Team, Edu, or Enterprise plan. [Learn more about what's included in your ChatGPT plan](https://help.openai.com/en/articles/11369540-icodex-in-chatgpt).
 
-You can also use Codex with an API key, but this requires [additional setup](./docs/authentication.md#usage-based-billing-alternative-use-an-openai-api-key). If you previously used an API key for usage-based billing, see the [migration steps](./docs/authentication.md#migrating-from-usage-based-billing-api-key). If you're having trouble with login, please comment on [this issue](https://github.com/openai/icodex/issues/1243).
+You can also use Codex with an API key, but this requires [additional setup](./docs/authentication.md#usage-based-billing-alternative-use-an-openai-api-key). If you previously used an API key for usage-based billing, see the [migration steps](./docs/authentication.md#migrating-from-usage-based-billing-api-key). If you're having trouble with login, please comment on [this issue](https://github.com/iechor/icodex/issues/1243).
 
 ### Model Context Protocol (MCP)
 

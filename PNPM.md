@@ -35,8 +35,8 @@ corepack prepare pnpm@10.8.1 --activate
 
 | Action                                     | Command                                  |
 | ------------------------------------------ | ---------------------------------------- |
-| Run a command in a specific package        | `pnpm --filter @openai/icodex run build`  |
-| Install a dependency in a specific package | `pnpm --filter @openai/icodex add lodash` |
+| Run a command in a specific package        | `pnpm --filter @iechor/icodex run build`  |
+| Install a dependency in a specific package | `pnpm --filter @iechor/icodex add lodash` |
 | Run a command in all packages              | `pnpm -r run test`                       |
 
 ## Monorepo structure

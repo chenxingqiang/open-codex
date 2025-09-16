@@ -6,7 +6,7 @@ This document describes the integration of the `large-models-interface` package 
 
 The Large Models Interface (LMI) integration allows Codex to work with a wide variety of AI model providers through a unified interface. This includes:
 
-- **International Providers**: OpenAI, Anthropic, Google, Mistral, Cohere, Hugging Face, NVIDIA, xAI, and more
+- **International Providers**: iEchor, Anthropic, Google, Mistral, Cohere, Hugging Face, NVIDIA, xAI, and more
 - **Chinese Providers**: 百度文心一言, 阿里云通义千问, 腾讯混元, 字节跳动豆包, 科大讯飞星火, 智谱AI, 月之暗面Kimi, DeepSeek, and more
 - **Local/Open Source**: Ollama, vLLM, LM Studio, Text Generation WebUI
 - **Other Providers**: Replicate, Together AI, Perplexity, Groq, Fireworks AI, OpenRouter
@@ -21,7 +21,7 @@ The integration uses a hybrid architecture:
 │                 │    │                  │    │ interface           │
 │ ┌─────────────┐ │    │ ┌──────────────┐ │    │ ┌─────────────────┐ │
 │ │ Model Bridge│ │◄──►│ │ Model Client │ │    │ │ 51+ Providers   │ │
-│ │ Service     │ │    │ │              │ │    │ │ (OpenAI, Claude,│ │
+│ │ Service     │ │    │ │              │ │    │ │ (iEchor, Claude,│ │
 │ └─────────────┘ │    │ └──────────────┘ │    │ │ Gemini, etc.)   │ │
 └─────────────────┘    └──────────────────┘    │ └─────────────────┘ │
                                                └─────────────────────┘
@@ -111,7 +111,7 @@ model_provider = "lmi_openai"
 ## Available Providers
 
 ### International Providers
-- `lmi_openai`: OpenAI (GPT-4, GPT-3.5, etc.)
+- `lmi_openai`: iEchor (GPT-4, GPT-3.5, etc.)
 - `lmi_anthropic`: Anthropic (Claude)
 - `lmi_google`: Google (Gemini, PaLM)
 - `lmi_mistral`: Mistral AI
@@ -170,7 +170,7 @@ LMI providers are configured in your `~/.icodex/config.toml` file under the `[mo
 
 ```toml
 [model_providers.lmi_openai]
-name = "OpenAI"
+name = "iEchor"
 base_url = "https://api.openai.com/v1"
 env_key = "OPENAI_API_KEY"
 env_key_instructions = "Get your API key from https://platform.openai.com/api-keys"
@@ -185,7 +185,7 @@ requires_openai_auth = false
 - `env_key`: Environment variable name for the API key
 - `env_key_instructions`: Instructions for obtaining the API key
 - `wire_api`: Always "lmi_bridge" for LMI providers
-- `requires_openai_auth`: Whether the provider requires OpenAI authentication (usually false)
+- `requires_openai_auth`: Whether the provider requires iEchor authentication (usually false)
 
 ## Troubleshooting
 

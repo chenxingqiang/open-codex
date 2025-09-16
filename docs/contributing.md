@@ -4,7 +4,7 @@ This project is under active development and the code will likely change pretty 
 
 **At the moment, we only plan to prioritize reviewing external contributions for bugs or security fixes.**
 
-If you want to add a new feature or change the behavior of an existing one, please open an issue proposing the feature and get approval from an OpenAI team member before spending time building it.
+If you want to add a new feature or change the behavior of an existing one, please open an issue proposing the feature and get approval from an iEchor team member before spending time building it.
 
 **New contributions that don't go through this process may be closed** if they aren't aligned with our current roadmap or conflict with other priorities/upcoming features.
 

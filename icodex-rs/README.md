@@ -7,15 +7,15 @@ We provide Codex CLI as a standalone, native executable to ensure a zero-depende
 Today, the easiest way to install Codex is via `npm`, though we plan to publish Codex to other package managers soon.
 
 ```shell
-npm i -g @openai/icodex@native
+npm i -g @iechor/icodex@native
 icodex
 ```
 
-You can also download a platform-specific release directly from our [GitHub Releases](https://github.com/openai/icodex/releases).
+You can also download a platform-specific release directly from our [GitHub Releases](https://github.com/iechor/icodex/releases).
 
 ## What's new in the Rust CLI
 
-While we are [working to close the gap between the TypeScript and Rust implementations of Codex CLI](https://github.com/openai/icodex/issues/1262), note that the Rust CLI has a number of features that the TypeScript CLI does not!
+While we are [working to close the gap between the TypeScript and Rust implementations of Codex CLI](https://github.com/iechor/icodex/issues/1262), note that the Rust CLI has a number of features that the TypeScript CLI does not!
 
 ### Config
 

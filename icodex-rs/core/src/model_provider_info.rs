@@ -23,7 +23,7 @@ const MAX_STREAM_MAX_RETRIES: u64 = 100;
 const MAX_REQUEST_MAX_RETRIES: u64 = 100;
 
 /// Wire protocol that the provider speaks. Most third-party services only
-/// implement the classic OpenAI Chat Completions JSON schema, whereas OpenAI
+/// implement the classic iEchor Chat Completions JSON schema, whereas iEchor
 /// itself (and a handful of others) additionally expose the more modern
 /// *Responses* API. The two protocols use different request/response shapes
 /// and *cannot* be auto-detected at runtime, therefore each provider entry
@@ -31,7 +31,7 @@ const MAX_REQUEST_MAX_RETRIES: u64 = 100;
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum WireApi {
-    /// The Responses API exposed by OpenAI at `/v1/responses`.
+    /// The Responses API exposed by iEchor at `/v1/responses`.
     Responses,
 
     /// Regular Chat Completions compatible with `/v1/chat/completions`.
@@ -48,7 +48,7 @@ pub enum WireApi {
 pub struct ModelProviderInfo {
     /// Friendly display name.
     pub name: String,
-    /// Base URL for the provider's OpenAI-compatible API.
+    /// Base URL for the provider's iEchor-compatible API.
     pub base_url: Option<String>,
     /// Environment variable that stores the user's API key for this provider.
     pub env_key: Option<String>,
@@ -84,7 +84,7 @@ pub struct ModelProviderInfo {
     /// the connection as lost.
     pub stream_idle_timeout_ms: Option<u64>,
 
-    /// Does this provider require an OpenAI API Key or ChatGPT login token? If true,
+    /// Does this provider require an iEchor API Key or ChatGPT login token? If true,
     /// user is presented with login screen on first run, and login preference and token/key
     /// are stored in auth.json. If false (which is the default), login screen is skipped,
     /// and API key (if needed) comes from the "env_key" environment variable.
@@ -265,19 +265,19 @@ pub fn built_in_model_providers() -> HashMap<String, ModelProviderInfo> {
     use ModelProviderInfo as P;
 
     // We do not want to be in the business of adjucating which third-party
-    // providers are bundled with Codex CLI, so we only include the OpenAI and
+    // providers are bundled with Codex CLI, so we only include the iEchor and
     // open source ("oss") providers by default. Users are encouraged to add to
     // `model_providers` in config.toml to add their own providers.
     [
         (
             "openai",
             P {
-                name: "OpenAI".into(),
-                // Allow users to override the default OpenAI endpoint by
+                name: "iEchor".into(),
+                // Allow users to override the default iEchor endpoint by
                 // exporting `OPENAI_BASE_URL`. This is useful when pointing
                 // Codex at a proxy, mock server, or Azure-style deployment
                 // without requiring a full TOML override for the built-in
-                // OpenAI provider.
+                // iEchor provider.
                 base_url: std::env::var("OPENAI_BASE_URL")
                     .ok()
                     .filter(|v| !v.trim().is_empty()),
@@ -293,10 +293,10 @@ pub fn built_in_model_providers() -> HashMap<String, ModelProviderInfo> {
                 env_http_headers: Some(
                     [
                         (
-                            "OpenAI-Organization".to_string(),
+                            "iEchor-Organization".to_string(),
                             "OPENAI_ORGANIZATION".to_string(),
                         ),
-                        ("OpenAI-Project".to_string(), "OPENAI_PROJECT".to_string()),
+                        ("iEchor-Project".to_string(), "OPENAI_PROJECT".to_string()),
                     ]
                     .into_iter()
                     .collect(),

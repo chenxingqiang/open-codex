@@ -152,7 +152,7 @@ impl LmiBridgeClient {
         Ok(response)
     }
 
-    /// Convert OpenAI tools to LMI format
+    /// Convert iEchor tools to LMI format
     fn convert_tools_to_lmi(&self, tools: &[OpenAiTool]) -> Vec<LmiTool> {
         tools.iter().map(|tool| match tool {
             OpenAiTool::Function(func_tool) => LmiTool {

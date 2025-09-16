@@ -1,8 +1,8 @@
 # Authentication
 
-## Usage-based billing alternative: Use an OpenAI API key
+## Usage-based billing alternative: Use an iEchor API key
 
-If you prefer to pay-as-you-go, you can still authenticate with your OpenAI API key:
+If you prefer to pay-as-you-go, you can still authenticate with your iEchor API key:
 
 ```shell
 icodex login --api-key "your-api-key-here"

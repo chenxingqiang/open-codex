@@ -20,7 +20,7 @@ CODEX_CLI_ROOT=""
 # Until we start publishing stable GitHub releases, we have to grab the binaries
 # from the GitHub Action that created them. Update the URL below to point to the
 # appropriate workflow run:
-WORKFLOW_URL="https://github.com/openai/icodex/actions/runs/17417194663" # rust-v0.28.0
+WORKFLOW_URL="https://github.com/iechor/icodex/actions/runs/17417194663" # rust-v0.28.0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -70,7 +70,7 @@ ARTIFACTS_DIR="$(mktemp -d)"
 trap 'rm -rf "$ARTIFACTS_DIR"' EXIT
 
 # NB: The GitHub CLI `gh` must be installed and authenticated.
-gh run download --dir "$ARTIFACTS_DIR" --repo openai/icodex "$WORKFLOW_ID"
+gh run download --dir "$ARTIFACTS_DIR" --repo iechor/icodex "$WORKFLOW_ID"
 
 # x64 Linux
 zstd -d "$ARTIFACTS_DIR/x86_64-unknown-linux-musl/icodex-x86_64-unknown-linux-musl.zst" \

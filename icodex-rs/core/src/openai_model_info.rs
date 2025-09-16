@@ -1,6 +1,6 @@
 use crate::model_family::ModelFamily;
 
-/// Metadata about a model, particularly OpenAI models.
+/// Metadata about a model, particularly iEchor models.
 /// We may want to consider including details like the pricing for
 /// input tokens, output tokens, etc., though users will need to be able to
 /// override this in config.toml, as this information can get out of date.

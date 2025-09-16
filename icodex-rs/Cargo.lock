@@ -570,7 +570,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e9b18233253483ce2f65329a24072ec414db782531bdbb7d0bbc4bd2ce6b7e21"
 
 [[package]]
-name = "codex-ansi-escape"
+name = "icodex-ansi-escape"
 version = "0.0.0"
 dependencies = [
  "ansi-to-tui",
@@ -579,7 +579,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-apply-patch"
+name = "icodex-apply-patch"
 version = "0.0.0"
 dependencies = [
  "anyhow",
@@ -594,26 +594,26 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-arg0"
+name = "icodex-arg0"
 version = "0.0.0"
 dependencies = [
  "anyhow",
- "codex-apply-patch",
- "codex-core",
- "codex-linux-sandbox",
+ "icodex-apply-patch",
+ "icodex-core",
+ "icodex-linux-sandbox",
  "dotenvy",
  "tempfile",
  "tokio",
 ]
 
 [[package]]
-name = "codex-chatgpt"
+name = "icodex-chatgpt"
 version = "0.0.0"
 dependencies = [
  "anyhow",
  "clap",
- "codex-common",
- "codex-core",
+ "icodex-common",
+ "icodex-core",
  "serde",
  "serde_json",
  "tempfile",
@@ -621,23 +621,23 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-cli"
+name = "icodex-cli"
 version = "0.0.0"
 dependencies = [
  "anyhow",
  "assert_cmd",
  "clap",
  "clap_complete",
- "codex-arg0",
- "codex-chatgpt",
- "codex-common",
- "codex-core",
- "codex-exec",
- "codex-login",
- "codex-mcp-server",
- "codex-protocol",
- "codex-protocol-ts",
- "codex-tui",
+ "icodex-arg0",
+ "icodex-chatgpt",
+ "icodex-common",
+ "icodex-core",
+ "icodex-exec",
+ "icodex-login",
+ "icodex-mcp-server",
+ "icodex-protocol",
+ "icodex-protocol-ts",
+ "icodex-tui",
  "predicates",
  "pretty_assertions",
  "serde_json",
@@ -648,18 +648,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-common"
+name = "icodex-common"
 version = "0.0.0"
 dependencies = [
  "clap",
- "codex-core",
- "codex-protocol",
+ "icodex-core",
+ "icodex-protocol",
  "serde",
  "toml",
 ]
 
 [[package]]
-name = "codex-core"
+name = "icodex-core"
 version = "0.0.0"
 dependencies = [
  "anyhow",
@@ -669,10 +669,10 @@ dependencies = [
  "base64",
  "bytes",
  "chrono",
- "codex-apply-patch",
- "codex-file-search",
- "codex-mcp-client",
- "codex-protocol",
+ "icodex-apply-patch",
+ "icodex-file-search",
+ "icodex-mcp-client",
+ "icodex-protocol",
  "core_test_support",
  "dirs",
  "env-flags",
@@ -716,18 +716,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-exec"
+name = "icodex-exec"
 version = "0.0.0"
 dependencies = [
  "anyhow",
  "assert_cmd",
  "chrono",
  "clap",
- "codex-arg0",
- "codex-common",
- "codex-core",
- "codex-ollama",
- "codex-protocol",
+ "icodex-arg0",
+ "icodex-common",
+ "icodex-core",
+ "icodex-ollama",
+ "icodex-protocol",
  "core_test_support",
  "libc",
  "owo-colors",
@@ -744,7 +744,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-execpolicy"
+name = "icodex-execpolicy"
 version = "0.0.0"
 dependencies = [
  "allocative",
@@ -764,7 +764,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-file-search"
+name = "icodex-file-search"
 version = "0.0.0"
 dependencies = [
  "anyhow",
@@ -777,11 +777,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-linux-sandbox"
+name = "icodex-linux-sandbox"
 version = "0.0.0"
 dependencies = [
  "clap",
- "codex-core",
+ "icodex-core",
  "landlock",
  "libc",
  "seccompiler",
@@ -790,13 +790,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-login"
+name = "icodex-login"
 version = "0.0.0"
 dependencies = [
  "base64",
  "chrono",
- "codex-core",
- "codex-protocol",
+ "icodex-core",
+ "icodex-protocol",
  "rand 0.8.5",
  "reqwest",
  "serde",
@@ -811,7 +811,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-mcp-client"
+name = "icodex-mcp-client"
 version = "0.0.0"
 dependencies = [
  "anyhow",
@@ -824,17 +824,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-mcp-server"
+name = "icodex-mcp-server"
 version = "0.0.0"
 dependencies = [
  "anyhow",
  "assert_cmd",
  "base64",
- "codex-arg0",
- "codex-common",
- "codex-core",
- "codex-login",
- "codex-protocol",
+ "icodex-arg0",
+ "icodex-common",
+ "icodex-core",
+ "icodex-login",
+ "icodex-protocol",
  "mcp-types",
  "mcp_test_support",
  "os_info",
@@ -853,12 +853,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-ollama"
+name = "icodex-ollama"
 version = "0.0.0"
 dependencies = [
  "async-stream",
  "bytes",
- "codex-core",
+ "icodex-core",
  "futures",
  "reqwest",
  "serde_json",
@@ -868,7 +868,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-protocol"
+name = "icodex-protocol"
 version = "0.0.0"
 dependencies = [
  "base64",
@@ -890,18 +890,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "codex-protocol-ts"
+name = "icodex-protocol-ts"
 version = "0.0.0"
 dependencies = [
  "anyhow",
  "clap",
- "codex-protocol",
+ "icodex-protocol",
  "mcp-types",
  "ts-rs",
 ]
 
 [[package]]
-name = "codex-tui"
+name = "icodex-tui"
 version = "0.0.0"
 dependencies = [
  "anyhow",
@@ -910,14 +910,14 @@ dependencies = [
  "base64",
  "chrono",
  "clap",
- "codex-ansi-escape",
- "codex-arg0",
- "codex-common",
- "codex-core",
- "codex-file-search",
- "codex-login",
- "codex-ollama",
- "codex-protocol",
+ "icodex-ansi-escape",
+ "icodex-arg0",
+ "icodex-common",
+ "icodex-core",
+ "icodex-file-search",
+ "icodex-login",
+ "icodex-ollama",
+ "icodex-protocol",
  "color-eyre",
  "crossterm",
  "diffy",
@@ -1072,7 +1072,7 @@ checksum = "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b"
 name = "core_test_support"
 version = "0.0.0"
 dependencies = [
- "codex-core",
+ "icodex-core",
  "serde_json",
  "tempfile",
  "tokio",
@@ -2732,9 +2732,9 @@ version = "0.0.0"
 dependencies = [
  "anyhow",
  "assert_cmd",
- "codex-core",
- "codex-mcp-server",
- "codex-protocol",
+ "icodex-core",
+ "icodex-mcp-server",
+ "icodex-protocol",
  "mcp-types",
  "os_info",
  "pretty_assertions",
