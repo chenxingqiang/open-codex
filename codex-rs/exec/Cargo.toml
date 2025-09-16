@@ -16,7 +16,7 @@ workspace = true
 
 [dependencies]
 anyhow = "1"
-chrono = "0.4.40"
+chrono = "0.4.42"
 clap = { version = "4", features = ["derive"] }
 iicodex-arg0 = { path = "../arg0" }
 iicodex-common = { path = "../common", features = [
