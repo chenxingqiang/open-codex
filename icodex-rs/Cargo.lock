@@ -570,392 +570,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e9b18233253483ce2f65329a24072ec414db782531bdbb7d0bbc4bd2ce6b7e21"
 
 [[package]]
-name = "icodex-ansi-escape"
-version = "0.0.0"
-dependencies = [
- "ansi-to-tui",
- "ratatui",
- "tracing",
-]
-
-[[package]]
-name = "icodex-apply-patch"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "assert_cmd",
- "once_cell",
- "pretty_assertions",
- "similar",
- "tempfile",
- "thiserror 2.0.16",
- "tree-sitter",
- "tree-sitter-bash",
-]
-
-[[package]]
-name = "icodex-arg0"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "icodex-apply-patch",
- "icodex-core",
- "icodex-linux-sandbox",
- "dotenvy",
- "tempfile",
- "tokio",
-]
-
-[[package]]
-name = "icodex-chatgpt"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "clap",
- "icodex-common",
- "icodex-core",
- "serde",
- "serde_json",
- "tempfile",
- "tokio",
-]
-
-[[package]]
-name = "icodex-cli"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "assert_cmd",
- "clap",
- "clap_complete",
- "icodex-arg0",
- "icodex-chatgpt",
- "icodex-common",
- "icodex-core",
- "icodex-exec",
- "icodex-login",
- "icodex-mcp-server",
- "icodex-protocol",
- "icodex-protocol-ts",
- "icodex-tui",
- "predicates",
- "pretty_assertions",
- "serde_json",
- "tempfile",
- "tokio",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "icodex-common"
-version = "0.0.0"
-dependencies = [
- "clap",
- "icodex-core",
- "icodex-protocol",
- "serde",
- "toml",
-]
-
-[[package]]
-name = "icodex-core"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "askama",
- "assert_cmd",
- "async-channel",
- "base64",
- "bytes",
- "chrono",
- "icodex-apply-patch",
- "icodex-file-search",
- "icodex-mcp-client",
- "icodex-protocol",
- "core_test_support",
- "dirs",
- "env-flags",
- "eventsource-stream",
- "futures",
- "landlock",
- "libc",
- "maplit",
- "mcp-types",
- "openssl-sys",
- "os_info",
- "portable-pty",
- "predicates",
- "pretty_assertions",
- "rand 0.9.2",
- "regex-lite",
- "reqwest",
- "seccompiler",
- "serde",
- "serde_json",
- "sha1",
- "shlex",
- "similar",
- "strum_macros 0.27.2",
- "tempfile",
- "thiserror 2.0.16",
- "time",
- "tokio",
- "tokio-test",
- "tokio-util",
- "toml",
- "toml_edit",
- "tracing",
- "tree-sitter",
- "tree-sitter-bash",
- "uuid",
- "walkdir",
- "which",
- "wildmatch",
- "wiremock",
-]
-
-[[package]]
-name = "icodex-exec"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "assert_cmd",
- "chrono",
- "clap",
- "icodex-arg0",
- "icodex-common",
- "icodex-core",
- "icodex-ollama",
- "icodex-protocol",
- "core_test_support",
- "libc",
- "owo-colors",
- "predicates",
- "serde_json",
- "shlex",
- "tempfile",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "uuid",
- "walkdir",
- "wiremock",
-]
-
-[[package]]
-name = "icodex-execpolicy"
-version = "0.0.0"
-dependencies = [
- "allocative",
- "anyhow",
- "clap",
- "derive_more 2.0.1",
- "env_logger",
- "log",
- "multimap",
- "path-absolutize",
- "regex-lite",
- "serde",
- "serde_json",
- "serde_with",
- "starlark",
- "tempfile",
-]
-
-[[package]]
-name = "icodex-file-search"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "clap",
- "ignore",
- "nucleo-matcher",
- "serde",
- "serde_json",
- "tokio",
-]
-
-[[package]]
-name = "icodex-linux-sandbox"
-version = "0.0.0"
-dependencies = [
- "clap",
- "icodex-core",
- "landlock",
- "libc",
- "seccompiler",
- "tempfile",
- "tokio",
-]
-
-[[package]]
-name = "icodex-login"
-version = "0.0.0"
-dependencies = [
- "base64",
- "chrono",
- "icodex-core",
- "icodex-protocol",
- "rand 0.8.5",
- "reqwest",
- "serde",
- "serde_json",
- "sha2",
- "tempfile",
- "tiny_http",
- "tokio",
- "url",
- "urlencoding",
- "webbrowser",
-]
-
-[[package]]
-name = "icodex-mcp-client"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "mcp-types",
- "serde",
- "serde_json",
- "tokio",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "icodex-mcp-server"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "assert_cmd",
- "base64",
- "icodex-arg0",
- "icodex-common",
- "icodex-core",
- "icodex-login",
- "icodex-protocol",
- "mcp-types",
- "mcp_test_support",
- "os_info",
- "pretty_assertions",
- "schemars 0.8.22",
- "serde",
- "serde_json",
- "shlex",
- "tempfile",
- "tokio",
- "toml",
- "tracing",
- "tracing-subscriber",
- "uuid",
- "wiremock",
-]
-
-[[package]]
-name = "icodex-ollama"
-version = "0.0.0"
-dependencies = [
- "async-stream",
- "bytes",
- "icodex-core",
- "futures",
- "reqwest",
- "serde_json",
- "tokio",
- "tracing",
- "wiremock",
-]
-
-[[package]]
-name = "icodex-protocol"
-version = "0.0.0"
-dependencies = [
- "base64",
- "icu_decimal",
- "icu_locale_core",
- "mcp-types",
- "mime_guess",
- "pretty_assertions",
- "serde",
- "serde_json",
- "serde_with",
- "strum 0.27.2",
- "strum_macros 0.27.2",
- "sys-locale",
- "tempfile",
- "tracing",
- "ts-rs",
- "uuid",
-]
-
-[[package]]
-name = "icodex-protocol-ts"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "clap",
- "icodex-protocol",
- "mcp-types",
- "ts-rs",
-]
-
-[[package]]
-name = "icodex-tui"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "arboard",
- "async-stream",
- "base64",
- "chrono",
- "clap",
- "icodex-ansi-escape",
- "icodex-arg0",
- "icodex-common",
- "icodex-core",
- "icodex-file-search",
- "icodex-login",
- "icodex-ollama",
- "icodex-protocol",
- "color-eyre",
- "crossterm",
- "diffy",
- "dirs",
- "image",
- "insta",
- "itertools 0.14.0",
- "lazy_static",
- "libc",
- "mcp-types",
- "once_cell",
- "path-clean",
- "pathdiff",
- "pretty_assertions",
- "pulldown-cmark",
- "rand 0.9.2",
- "ratatui",
- "regex-lite",
- "serde",
- "serde_json",
- "shlex",
- "strum 0.27.2",
- "strum_macros 0.27.2",
- "supports-color",
- "tempfile",
- "textwrap 0.16.2",
- "tokio",
- "tokio-stream",
- "tracing",
- "tracing-appender",
- "tracing-subscriber",
- "unicode-segmentation",
- "unicode-width 0.1.14",
- "url",
- "vt100",
-]
-
-[[package]]
 name = "color-eyre"
 version = "0.6.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2155,6 +1769,392 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f31827a206f56af32e590ba56d5d2d085f558508192593743f16b2306495269f"
 dependencies = [
  "cc",
+]
+
+[[package]]
+name = "icodex-ansi-escape"
+version = "0.0.0"
+dependencies = [
+ "ansi-to-tui",
+ "ratatui",
+ "tracing",
+]
+
+[[package]]
+name = "icodex-apply-patch"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "assert_cmd",
+ "once_cell",
+ "pretty_assertions",
+ "similar",
+ "tempfile",
+ "thiserror 2.0.16",
+ "tree-sitter",
+ "tree-sitter-bash",
+]
+
+[[package]]
+name = "icodex-arg0"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "dotenvy",
+ "icodex-apply-patch",
+ "icodex-core",
+ "icodex-linux-sandbox",
+ "tempfile",
+ "tokio",
+]
+
+[[package]]
+name = "icodex-chatgpt"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "icodex-common",
+ "icodex-core",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tokio",
+]
+
+[[package]]
+name = "icodex-cli"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "assert_cmd",
+ "clap",
+ "clap_complete",
+ "icodex-arg0",
+ "icodex-chatgpt",
+ "icodex-common",
+ "icodex-core",
+ "icodex-exec",
+ "icodex-login",
+ "icodex-mcp-server",
+ "icodex-protocol",
+ "icodex-protocol-ts",
+ "icodex-tui",
+ "predicates",
+ "pretty_assertions",
+ "serde_json",
+ "tempfile",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "icodex-common"
+version = "0.0.0"
+dependencies = [
+ "clap",
+ "icodex-core",
+ "icodex-protocol",
+ "serde",
+ "toml",
+]
+
+[[package]]
+name = "icodex-core"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "askama",
+ "assert_cmd",
+ "async-channel",
+ "base64",
+ "bytes",
+ "chrono",
+ "core_test_support",
+ "dirs",
+ "env-flags",
+ "eventsource-stream",
+ "futures",
+ "icodex-apply-patch",
+ "icodex-file-search",
+ "icodex-mcp-client",
+ "icodex-protocol",
+ "landlock",
+ "libc",
+ "maplit",
+ "mcp-types",
+ "openssl-sys",
+ "os_info",
+ "portable-pty",
+ "predicates",
+ "pretty_assertions",
+ "rand 0.9.2",
+ "regex-lite",
+ "reqwest",
+ "seccompiler",
+ "serde",
+ "serde_json",
+ "sha1",
+ "shlex",
+ "similar",
+ "strum_macros 0.27.2",
+ "tempfile",
+ "thiserror 2.0.16",
+ "time",
+ "tokio",
+ "tokio-test",
+ "tokio-util",
+ "toml",
+ "toml_edit",
+ "tracing",
+ "tree-sitter",
+ "tree-sitter-bash",
+ "uuid",
+ "walkdir",
+ "which",
+ "wildmatch",
+ "wiremock",
+]
+
+[[package]]
+name = "icodex-exec"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "assert_cmd",
+ "chrono",
+ "clap",
+ "core_test_support",
+ "icodex-arg0",
+ "icodex-common",
+ "icodex-core",
+ "icodex-ollama",
+ "icodex-protocol",
+ "libc",
+ "owo-colors",
+ "predicates",
+ "serde_json",
+ "shlex",
+ "tempfile",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+ "uuid",
+ "walkdir",
+ "wiremock",
+]
+
+[[package]]
+name = "icodex-execpolicy"
+version = "0.0.0"
+dependencies = [
+ "allocative",
+ "anyhow",
+ "clap",
+ "derive_more 2.0.1",
+ "env_logger",
+ "log",
+ "multimap",
+ "path-absolutize",
+ "regex-lite",
+ "serde",
+ "serde_json",
+ "serde_with",
+ "starlark",
+ "tempfile",
+]
+
+[[package]]
+name = "icodex-file-search"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "ignore",
+ "nucleo-matcher",
+ "serde",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
+name = "icodex-linux-sandbox"
+version = "0.0.0"
+dependencies = [
+ "clap",
+ "icodex-core",
+ "landlock",
+ "libc",
+ "seccompiler",
+ "tempfile",
+ "tokio",
+]
+
+[[package]]
+name = "icodex-login"
+version = "0.0.0"
+dependencies = [
+ "base64",
+ "chrono",
+ "icodex-core",
+ "icodex-protocol",
+ "rand 0.8.5",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "tiny_http",
+ "tokio",
+ "url",
+ "urlencoding",
+ "webbrowser",
+]
+
+[[package]]
+name = "icodex-mcp-client"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "mcp-types",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "icodex-mcp-server"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "assert_cmd",
+ "base64",
+ "icodex-arg0",
+ "icodex-common",
+ "icodex-core",
+ "icodex-login",
+ "icodex-protocol",
+ "mcp-types",
+ "mcp_test_support",
+ "os_info",
+ "pretty_assertions",
+ "schemars 0.8.22",
+ "serde",
+ "serde_json",
+ "shlex",
+ "tempfile",
+ "tokio",
+ "toml",
+ "tracing",
+ "tracing-subscriber",
+ "uuid",
+ "wiremock",
+]
+
+[[package]]
+name = "icodex-ollama"
+version = "0.0.0"
+dependencies = [
+ "async-stream",
+ "bytes",
+ "futures",
+ "icodex-core",
+ "reqwest",
+ "serde_json",
+ "tokio",
+ "tracing",
+ "wiremock",
+]
+
+[[package]]
+name = "icodex-protocol"
+version = "0.0.0"
+dependencies = [
+ "base64",
+ "icu_decimal",
+ "icu_locale_core",
+ "mcp-types",
+ "mime_guess",
+ "pretty_assertions",
+ "serde",
+ "serde_json",
+ "serde_with",
+ "strum 0.27.2",
+ "strum_macros 0.27.2",
+ "sys-locale",
+ "tempfile",
+ "tracing",
+ "ts-rs",
+ "uuid",
+]
+
+[[package]]
+name = "icodex-protocol-ts"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "icodex-protocol",
+ "mcp-types",
+ "ts-rs",
+]
+
+[[package]]
+name = "icodex-tui"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "arboard",
+ "async-stream",
+ "base64",
+ "chrono",
+ "clap",
+ "color-eyre",
+ "crossterm",
+ "diffy",
+ "dirs",
+ "icodex-ansi-escape",
+ "icodex-arg0",
+ "icodex-common",
+ "icodex-core",
+ "icodex-file-search",
+ "icodex-login",
+ "icodex-ollama",
+ "icodex-protocol",
+ "image",
+ "insta",
+ "itertools 0.14.0",
+ "lazy_static",
+ "libc",
+ "mcp-types",
+ "once_cell",
+ "path-clean",
+ "pathdiff",
+ "pretty_assertions",
+ "pulldown-cmark",
+ "rand 0.9.2",
+ "ratatui",
+ "regex-lite",
+ "serde",
+ "serde_json",
+ "shlex",
+ "strum 0.27.2",
+ "strum_macros 0.27.2",
+ "supports-color",
+ "tempfile",
+ "textwrap 0.16.2",
+ "tokio",
+ "tokio-stream",
+ "tracing",
+ "tracing-appender",
+ "tracing-subscriber",
+ "unicode-segmentation",
+ "unicode-width 0.1.14",
+ "url",
+ "vt100",
 ]
 
 [[package]]
@@ -3926,9 +3926,9 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.224"
+version = "1.0.226"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6aaeb1e94f53b16384af593c71e20b095e958dab1d26939c1b70645c5cfbcc0b"
+checksum = "0dca6411025b24b60bfa7ec1fe1f8e710ac09782dca409ee8237ba74b51295fd"
 dependencies = [
  "serde_core",
  "serde_derive",
@@ -3936,18 +3936,18 @@ dependencies = [
 
 [[package]]
 name = "serde_core"
-version = "1.0.224"
+version = "1.0.226"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "32f39390fa6346e24defbcdd3d9544ba8a19985d0af74df8501fbfe9a64341ab"
+checksum = "ba2ba63999edb9dac981fb34b3e5c0d111a69b0924e253ed29d83f7c99e966a4"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.224"
+version = "1.0.226"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "87ff78ab5e8561c9a675bfc1785cb07ae721f0ee53329a595cefd8c04c2ac4e0"
+checksum = "8db53ae22f34573731bafa1db20f04027b2d25e02d8205921b569171699cdb33"
 dependencies = [
  "proc-macro2",
  "quote",
